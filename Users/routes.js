@@ -68,11 +68,15 @@ export default function UserRoutes(app) {
 
 
    };
-  const signout = (req, res) => { 
-    currentUser = null;
-    req.session.destroy();
-    res.sendStatus(200);
+  const signout = (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ message: "Unable to sign out. Try again later." });
+      }
+      res.sendStatus(200);
+    });
   };
+  
   const profile = (req, res) => {
     const currentUser = req.session["currentUser"];
     if (!currentUser) {

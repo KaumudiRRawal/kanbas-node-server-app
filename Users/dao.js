@@ -1,4 +1,4 @@
-import model from "./model.js";
+import model from './model.js';
 export const findAllUsers = () => model.find();
 export const findUserByUsername = (username) =>  model.findOne({ username: username });
 export const findUserByCredentials = (username, password) =>  model.findOne({ username, password });
@@ -6,6 +6,7 @@ export const updateUser = (userId, user) =>  model.updateOne({ _id: userId }, { 
 export const deleteUser = (userId) => model.deleteOne({ _id: userId });
 export const findUsersByRole = (role) => model.find({ role: role }); 
 export const findUserById = (userId) => model.findById(userId);
+
 export const createUser = (user) => {
     delete user._id
     return model.create(user);
@@ -19,8 +20,3 @@ export const findUsersByPartialName = (partialName) => {
       $or: [{ firstName: { $regex: regex } }, { lastName: { $regex: regex } }],
     });
   };
-  
-  
-
-
-

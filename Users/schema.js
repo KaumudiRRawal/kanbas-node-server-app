@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+import axios from "axios";
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     firstName: String,
-    email: {type:String, unique: true},
+    email: {type:String, unique: false},
     lastName: String,
     dob: Date,
     role: {
